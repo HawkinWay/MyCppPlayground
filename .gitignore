@@ -1,0 +1,18 @@
+# mac
+.DS_Store
+
+# debug symbols
+*.dSYM/
+
+# vscode
+.vscode/
+
+# files without suffix
+*
+!*.cpp
+!*.h
+!*.hpp
+!*.txt
+!*.md
+!*/
+!*.gitignore
