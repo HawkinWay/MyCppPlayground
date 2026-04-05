@@ -1,0 +1,3 @@
+## rename
+
+mv fileName.txt fileName.md
