@@ -1,0 +1,5 @@
+# change the branch name
+git branch -m learned-to-4.0.2 learned-to-5.15
+git fetch origin
+git branch -u origin/learned-to-5.15 learned-to-5.15
+git remote set-head origin -a
