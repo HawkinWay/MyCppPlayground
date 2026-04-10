@@ -7,6 +7,11 @@
 # vscode
 .vscode/
 
+# CMake compiled folder
+**/cmake-build/
+CMakeCache.txt
+CMakeFiles/
+
 # files without suffix
 *
 !*.cpp

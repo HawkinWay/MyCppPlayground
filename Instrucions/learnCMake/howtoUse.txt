@@ -1,0 +1,15 @@
+```zsh
+cmake -S . -B cmake-build
+```
+
+# '-S' means Source, it tells CMake where to find the most important file "CMakeLists.txt"
+# '.' means current directory
+# '-B' means Build
+# '-B cmake-build' means put compiled files into a folder called 'cmake-build'. If the folder doesn't exist, CMake will build itself.
+
+```zsh
+cd cmake-file
+./binaryFileName
+```
+
+# binaryFileName is written in 'CMakeLists.txt', at the line of 'project(binaryFileName)'
