@@ -6,7 +6,8 @@ static bool Play = false;
 void DoWork(){
 	using namespace std::literals::chrono_literals;
 	
-	std::cout << "BPM:128" << std::endl;
+	std::cout << "started thread id=" << std::this_thread::get_id() << std::endl;
+	std::cout << "BPM:120" << std::endl;
 
 	while(!Play){
 		std::cout << "KICK\n";
@@ -23,8 +24,10 @@ int main(){
 	std::cin.get();
 	Play = true;
 
-	drums.join();
-	std::cout << "paused\n";
+	drums.join();	// waiting for thread 'drums' to end
+	std::cout << "Paused." << std::endl;
+	std::cout << "started thread id=" << std::this_thread::get_id() << std::endl;
+
 	
 	std::cin.get();
 }
