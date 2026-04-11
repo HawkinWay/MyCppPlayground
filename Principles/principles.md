@@ -15,9 +15,9 @@ triggered by "tasks.json"
 g++ -c fileName.cpp -o virtual.o
 ```
 
-> '-c' means compile, tells the compiler to *skip* the linking stage and produce an **Object file**
-> '-o' means output
-> '.o' is Object file
+> '-c' means compile, tells the compiler to *skip* the linking stage and produce an **Object file**  
+> '-o' means output  
+> '.o' is Object file  
 
 ---
 
