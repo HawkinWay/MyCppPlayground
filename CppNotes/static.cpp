@@ -3,9 +3,10 @@
 class Entity{
 public:
     int x, y;
+    // static member-variables should be decalred inside the class and defined outside the class.
     static int m, n;
 
-    // static functino can only call static variables
+    // static meber-function can only call static member-variables, can be defined inside the class.
     // static void print(){
     //     std::cout << x << ", " << y << std::endl;
     // }

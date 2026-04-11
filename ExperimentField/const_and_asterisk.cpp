@@ -26,8 +26,8 @@ int main(){
 	p2 = &j; //(3)
 	int *const p3 = &i; // (4)
 	*p3 = 20; // (5)
-	*p2 = 30; // (6)
-	p3 = &j;
+//  *p2 = 30; // (6) error
+//   p3 = &j; // (7) error
 
 	std::cin.get();
 }
