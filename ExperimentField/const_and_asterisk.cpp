@@ -2,6 +2,9 @@
 
 // Right-to-Left Rule
 
+// Treat everything after the asterisk as a single unit.
+// const int *[p], int const *[p], int *[const p], const int *[const p]
+
 // 1
 // Pointer to Constant Integer: 'const int *p' or int const *p'
 // The data being pointed to is constant.
