@@ -1,6 +1,7 @@
 # Principles
 
-![What's a translation unit.png](./translation_unit "translation unit")
+<img width="1378" height="765" alt="translation_unit" src="https://github.com/user-attachments/assets/63a507c8-5b77-42cb-9ade-e5b7d1120d55" />
+
 
 ## 1. Compilation
 
