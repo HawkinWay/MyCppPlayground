@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstring>
+#include<cstdint>
 
 class String {
 private:
@@ -8,7 +9,7 @@ private:
 public:
     String() = default;
     String(const char* string) {
-        printf("String(const char* string), Created!\n");
+        printf("String(const char* string), Created!\n");   // 1
         m_Size = strlen(string);
         m_Data = new char[m_Size];
         memcpy(m_Data, string, m_Size);
@@ -22,7 +23,7 @@ public:
     }
     
     String(String&& other) {
-        printf("String(String&& other), Moved!\n");
+        printf("String(String&& other), Moved!\n");     // 2
         m_Size = other.m_Size;
         m_Data = other.m_Data;
         other.m_Data = nullptr;
@@ -30,7 +31,7 @@ public:
     }
  
    ~String() {
-        printf("~Sring(), Destroyed!\n");
+        printf("~Sring(), Destroyed!\n");       // 4    6
         delete[] m_Data;
     }
  
@@ -52,17 +53,17 @@ public:
     // Entity(String&& name) : m_Name((String&&)name) {
     //         std::cout << "Entity(String&& name).\n";
     // }
-    Entity(String&& name) : m_Name(std::move(name)) {   //调用的是m_Name((String&&)name),将左值转换为右值
+    Entity(String&& name) : m_Name(std::move(name)) {   // 3 调用的是m_Name((String&&)name),将左值转换为右值
             std::cout << "Entity(String&& name).\n";
     }
     void PrintName() {
-        m_Name.Print();
+        m_Name.Print();     // 5
     }
 };
 
 int main(){
-    Entity entity(String("原神"));
-    entity.PrintName();
+    Entity entity(String("原神"));  // 1 2 3 4
+    entity.PrintName();     // 5
     
 
     //浅拷贝：直接赋值（⚠️危险，两个指针会指向同一块内存空间）      深拷贝：分配空间后拷贝
@@ -74,7 +75,7 @@ int main(){
     //int &n = 10;   // wrong
     int &&n = 11;
     n = 100;
-    std::cout << "n: " << n << std::endl;
+    std::cout << "\nn: " << n << std::endl;
     
     //int &j = 10;  //wrong,左值引用不能绑定右值
     const int &j = 10;  //const左值引用可以绑定右值
