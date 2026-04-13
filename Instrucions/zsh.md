@@ -2,7 +2,7 @@
 
 ## 1. clear your Terminal
 
-``zsh
+```zsh
 clear
 ```
 
@@ -49,6 +49,6 @@ cat fileName
 
 ### 3.1 with line numbers
 
-``zsh
+```zsh
 cat -n fileName
 ```
