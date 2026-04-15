@@ -52,3 +52,11 @@ cat fileName
 ```zsh
 cat -n fileName
 ```
+
+---
+
+## grant executable permissions to the file
+
+```zsh
+chmod +x fileName
+```
