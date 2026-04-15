@@ -5,10 +5,13 @@
 // The purpose of a constexpr function is to produce a constant at compile time.
 // This uses less memory and helps your program run faster.
 
-// All constexpr vriables are const.
-// member-function with 'constexpr' should be declared and defined in .h
-// A variable can be declared with constexpr, when it has a literal type and is initialized. 
-// In C++11, a constexpr function can only have one return statement
+// 1. All constexpr vriables are const.
+// 2. Member-function with 'constexpr' should be declared and defined in .h
+//    Because every translate unit is independent, they don't know each other
+//    If the compiler only sees the declaration of GetValue() but not its definition(like GetValue() declared in foo.h and be pasted with include "foo.h" in main.cpp, but it's definition in foo.cpp) when compiling main.cpp, 
+//    it will not be able to calculate the result at compile time.
+// 3. A variable can be declared with constexpr, when it has a literal type and is initialized. 
+// 4. In C++11, a constexpr function can only have one return statement
 
 // godbolt.org
 
