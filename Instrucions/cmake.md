@@ -52,9 +52,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 ## 设置目标属性
 
-target_include_directories(TARGET target_name
-                           [BEFORE | AFTER]
-                           [SYSTEM] [PUBLIC | PRIVATE | INTERFACE]
+target_include_directories(TARGET target_name  
+                           [BEFORE | AFTER]  
+                           [SYSTEM] [PUBLIC | PRIVATE | INTERFACE]  
                            [items1...])
 
 ```CMakeLists
@@ -65,12 +65,12 @@ target_include_directories(execuName PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
 ## 安装规则
 
-install(TARGETS target1 [target2 ...]
-        [RUNTIME DESTINATION dir]
-        [LIBRARY DESTINATION dir]
-        [ARCHIVE DESTINATION dir]
-        [INCLUDES DESTINATION [dir ...]]
-        [PRIVATE_HEADER DESTINATION dir]
+install(TARGETS target1 [target2 ...]  
+        [RUNTIME DESTINATION dir]  
+        [LIBRARY DESTINATION dir]  
+        [ARCHIVE DESTINATION dir]  
+        [INCLUDES DESTINATION [dir ...]]  
+        [PRIVATE_HEADER DESTINATION dir]  
         [PUBLIC_HEADER DESTINATION dir])
 
 ```CMakeLists
