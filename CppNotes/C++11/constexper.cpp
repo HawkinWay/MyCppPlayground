@@ -6,6 +6,7 @@
 // This uses less memory and helps your program run faster.
 
 // All constexpr vriables are const.
+// member-function with 'constexpr' should be declared and defined in .h
 // A variable can be declared with constexpr, when it has a literal type and is initialized. 
 // In C++11, a constexpr function can only have one return statement
 
