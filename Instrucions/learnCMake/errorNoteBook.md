@@ -1,14 +1,15 @@
-# cpp project structure
+# C++ project structure
 
-> Runoob/  
->   CMakeLists.txt  
->   include/  
->       mylib.h
->   src/  
->       mylib.cpp  
->       main.cpp
+📁File Structure:  
+> 📁Runoob  
+> 	&emsp;📄CMakeLists.txt  
+> 	&emsp;📁include  
+>       &emsp;&emsp;&emsp;📄mylib.h  
+>   &emsp;📁src  
+>       &emsp;&emsp;&emsp;📄mylib.cpp  
+>       &emsp;&emsp;&emsp;📄main.cpp
 
-## mylib.h
+## 📄mylib.h
 
 > Runoob/include/mylib.h
 
@@ -35,7 +36,7 @@ public:
 } 
 ```
 
-## mylib.cpp
+## 📄mylib.cpp
 
 > Runoob/src/mylib.cpp
 
@@ -56,7 +57,7 @@ int Foo::adder() const{return a + b;}
 
 ```
 
-## main.cpp
+## 📄main.cpp
 
 > Runoob/src/main.cpp
 
@@ -83,9 +84,9 @@ std::cin.get();
 
 ---
 
-## correct version
+## ✅correct version
 
-### mylib.h
+### 📄mylib.h
 
 ```mylib.h
 #pragma once
@@ -107,7 +108,7 @@ public:
 
 ---
 
-### mylib.cpp
+### 📄mylib.cpp
 
 ```mylib.cpp
 #include "../include/mylib.h"
@@ -123,7 +124,7 @@ int Foo::adder() const{return a + b;}
 
 ---
 
-### main.cpp
+### 📄main.cpp
 
 ```main.cpp
 #include "../include/mylib.h"
@@ -140,7 +141,7 @@ int main(){
 
 ---
 
-## **RUN THEM**
+## ▶️**RUN THEM**
 
 ```bash
 g++ mylib.cpp main.cpp -o main
