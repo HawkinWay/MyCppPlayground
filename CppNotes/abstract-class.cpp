@@ -2,7 +2,10 @@
 
 class Shape{
 public:
-    virtual double area() = 0;
+    virtual double area() = 0;      
+    virtual ~Shape() = default; // 虚析构函数，能让基类指针删除子对象
+    // virtual function() = 0 定义纯虚函数
+    // function = default 显示缺省，让编译器生成这个函数的默认版本。只能用于默认构造函数、析构函数、拷贝构造/赋值、移动构造/赋值
 };
 
 class Square : public Shape{
@@ -13,7 +16,7 @@ public:
 
     }
 
-    double area(){
+    double area() override{
         return side * side;
     }
 };
@@ -27,7 +30,7 @@ public:
 
     }
 
-    double area(){
+    double area() override{
         return 0.5 * base * height;
     }
 };
