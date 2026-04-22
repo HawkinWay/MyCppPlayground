@@ -37,7 +37,9 @@ git commit -m "initial commit"
 
 ```bash
 git remote add origin git@github.com:HawkinWay/xxx.git
+# use -M to unify naming
 git branch -M main
+# when you first push into your new branch, use '-u' to establish association
 git push -u origin main
 ```
 
