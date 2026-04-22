@@ -4,7 +4,7 @@
 
 ## 1. Processing    预处理
 
-> A processor processes all instructions that begin with ‘#’  
+> A processor processes all instructions that begin with ‘#’(#include #define #if etc.)
 > For 'main.cpp': When it sees #include "mylib.h", it will directly copy and paste the entire contents of "mylib.h" into the header of main.cpp  
 > The expanded code is called a **translation unit**
 > If you have two '.cpp' files, the compiler will see two independent compilation units. At this step, they are completely unaware of each other's existence
