@@ -6,6 +6,10 @@ public:
     virtual ~Shape() = default; // 虚析构函数，能让基类指针删除子对象
     // virtual function() = 0 定义纯虚函数
     // function = default 显示缺省，让编译器生成这个函数的默认版本。只能用于默认构造函数、析构函数、拷贝构造/赋值、移动构造/赋值
+    // function = delete 显示仅用某个函数，常用语禁止特定的构造函数、拷贝构造和赋值构造 
+    // Entity(double) = delete;
+    // Entity(const Entity&) = delete; 
+    // Entity& operator = (const Entity&) = delete;
 };
 
 class Square : public Shape{
