@@ -20,7 +20,7 @@
 
 // account.h
 class Account{
-    public:
+public:
     Account(double initial_balance){
         balance = initial_balance;
     }
@@ -33,7 +33,7 @@ class Account{
         return balance;
     }
     inline double WithDraw(double amount);
-    private:
+private:
     double balance;
 };
 

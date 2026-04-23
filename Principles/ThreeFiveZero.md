@@ -57,7 +57,7 @@ public:
         return *this;
     }
 
- // --- In move semantics, 'new' should now apper.---
+ // --- In move semantics, 'new' should not apper.---
     // move constructor
     Entity(Entity &&other) noexcept : _a(other._a), p(other.p){
         other._a = 0;
@@ -91,7 +91,7 @@ int main(){
     hi = foo;
 
     // call move constructor
-    Entity m1(std::move(bar1))
+    Entity m1(std::move(bar1));
     Entity m2 = std::move(bar2);
 
     // call move assinment constructor
@@ -125,5 +125,27 @@ public:
     // Note: std::unique_ptr disables default copying
     // If you still need copying functionality, you need to implement the copying logic manually
     // But usually in resource-intensive development, we only retain move only.
+    void printInfo() {
+        std::cout << "Size: " << _size << ", Data address: " << _data.get() << std::endl;
+    }
 };
 ```
+---
+
+**You can find test samples in:**
+
+    ../ExperimentField/rule5.cpp  
+
+    ../ExperimentField/rule0.cpp
+
+run them:  
+
+```bash
+clang++ rule5.cpp -o rule5
+./rule5
+
+clang++ rule0.cpp -o rule0
+./rule0
+```
+
+*if you use g++, use 'g++' to substitue 'clang++'*
