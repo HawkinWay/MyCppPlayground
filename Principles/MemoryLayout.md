@@ -1,5 +1,8 @@
 # Memory Layout (RAM)
 
+32-bit OS
+<img width="360" height="600" alt="32-bit OS Memory Layout" src="https://github.com/user-attachments/assets/0e4c0829-91a1-48ff-90e7-f2bc4364cbbd" />
+
 Segments profixed with '.' (or in macOS '__')  indicate that they have identified the named section in the executable file in compiling and linking time(build time).  
 Compiler will release this fixed-size memory space automatically.
 
