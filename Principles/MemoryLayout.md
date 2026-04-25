@@ -19,15 +19,15 @@ Compiler will release this fixed-size memory space automatically.
 
 ### 2.1 Read-only Data(.rodata)
 
-> stores initialized read-only constant
+> stores initialized read-only **constant**
 
 ### 2.2 Data(.data)
 
-> stores initialized non-zero variable
+> stores initialized non-zero global variable
 
 ### 2.3 BSS(.bss)
 
-> reserve space for **uninitialized** or variable with a value of 0
+> reserve space for global **uninitialized** or global variable with a value of 0
 
 
 
@@ -39,7 +39,7 @@ Compiler will release this fixed-size memory space automatically.
 
 - Dynamic Allocation
 - Large/flexible Size
-- Manual Management
+- Manual Management(new/delete malloc/free)
 - *Risk of Memory Leaks*
 
 ### 3.2 Stack
