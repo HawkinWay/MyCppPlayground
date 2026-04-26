@@ -1,0 +1,5 @@
+paste the following 4 files in this folder: 
+JUCE/examples/CMake/AudioPlugin/PluginProcessor.h
+JUCE/examples/CMake/AudioPlugin/PluginProcessor.cpp
+JUCE/examples/CMake/AudioPlugin/PluginEditor.h
+JUCE/examples/CMake/AudioPlugin/PluginEditor.cpp

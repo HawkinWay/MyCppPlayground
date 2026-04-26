@@ -30,7 +30,7 @@ struct What{
 			float x, y, z, w;
 		};
 		struct{
-			FK a, b;
+			FK a, b;	// a: x,y	b: z,w
 		};
 	};
 };
