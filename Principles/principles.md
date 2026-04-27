@@ -62,3 +62,10 @@ triggered by "launch.json"(GDB)
 g++ fileName.cpp -o fileName
 ./fileName
 ```
+
+or you wanna specify the compiler standard
+
+```bash
+g++ -std=c++17 fileName.cpp -o fileName
+./fileName
+```
