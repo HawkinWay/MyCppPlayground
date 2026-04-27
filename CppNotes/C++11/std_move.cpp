@@ -4,6 +4,11 @@
 
 
 // 有名字的就是左值，没名字的就是右值
+// std::move()并不移动任何东西，实质上是做类型转换，只是将给定的lvalue转换为rvalue引用
+template<typename T>
+T&& move(T& X) noexcept{
+	return static_cast<T&&>(X);
+}
 
 class String {
 private:
@@ -91,3 +96,5 @@ int main(){
     
     //std::move()是xvalue，属于右值的一种。移动后s仍然是有效对象 但处于未指定状态（不一定为空）
 }
+
+// 如果函数或构造函数没有能够接受rvalue引用参数的重载，那么添加std::move()是没有用的
