@@ -1,0 +1,3 @@
+/home/shovy/Documents/MyCppPlayground/ExperimentField/Handwriting/my_array/cmake-build/CMakeFiles/arrayExc.dir
+/home/shovy/Documents/MyCppPlayground/ExperimentField/Handwriting/my_array/cmake-build/CMakeFiles/edit_cache.dir
+/home/shovy/Documents/MyCppPlayground/ExperimentField/Handwriting/my_array/cmake-build/CMakeFiles/rebuild_cache.dir
