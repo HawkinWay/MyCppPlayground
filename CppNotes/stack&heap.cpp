@@ -10,6 +10,7 @@ int main() {
 
 	//stack RAM
 	int val = 5;
+	//int arr[val];		error, for stack allocation, the size must be a constant in compile time
 	int arr[5] = { 1,2,3,4,5 };
 	vec vc;
 
