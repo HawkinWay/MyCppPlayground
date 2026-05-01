@@ -16,7 +16,7 @@ vtclass<int> vtinst2;
 vtclass<int, float> vtinst3;
 vtclass<double, std::vector<int>, float> vtinst4;
 
-// reqiured at least one type when you define
+// reqiured at least one type when defining
 template<typename First, typename... Rest> class classname;
 
 

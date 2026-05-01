@@ -9,5 +9,6 @@
 
 int main(){
 	std::array<int, 11> arr;
-	static_assert(arr.size() > 10, "Size is too large!");
+	static_assert(arr.size() <= 11, "Size is too large!");
+	// if arr.size() > 11, will trigger the assertion
 }
