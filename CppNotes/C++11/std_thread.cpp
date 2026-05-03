@@ -24,10 +24,12 @@ int main(){
 	std::cin.get();
 	Play = true;
 
-	drums.join();	// waiting for thread 'drums' to end
+	drums.join();	// This main thread will only continue after the child thread (DoWork()) finishes. 
 	std::cout << "Paused." << std::endl;
 	std::cout << "started thread id=" << std::this_thread::get_id() << std::endl;
-
-	
+	#if 0
+	drums.detach();	// detach the main thread and the child thread. Although main thread has finished , the child thread continues to run in the bacground.
+	drums.joinable();	// return a bool value, judge wheather the thread can be joined
+	#endif
 	std::cin.get();
 }
