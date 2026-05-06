@@ -14,13 +14,13 @@ public:
     ThreadPool(int threadNums) : _stop(false) {
         for(auto i = 0; i < threadNums; i++){
             _v_threads.emplace_back([this](){
-                while(1){
+                while(1){                                       // use while to prevent Spurious Wakeup
                     std::unique_lock<std::mutex> ulc(_mtx);
-                    _cond.wait(ulc, [this](){
+                    _cond.wait(ulc, [this](){                   // capture [this] allows this lambda-function access private members
                         return !_q_tasks.empty() || _stop;
                     });
                     if(_stop && _q_tasks.empty())
-                        return;
+                        return;                                 // use return to exit lambda
                     
                     auto task = std::move(_q_tasks.front());
                     _q_tasks.pop();
@@ -38,7 +38,7 @@ public:
         }
         _cond.notify_all();
         for(auto& i : _v_threads){
-            i.join();
+            i.join();   // this will modify the thread's state, so you cannot add `const auto& i`
         }
     }
 
@@ -51,6 +51,28 @@ public:
         }
         _cond.notify_one();
     }
+
+// about std::function<void()> task = std::bind(std::forward<T>(t), std::forward<Arguments>(args)...);
+#if 0
+    void print(int x) {
+        std::cout << x;
+    }
+    pool.enqueue(print, 10);
+
+    auto task = std::bind(print, 10);
+
+    task();     // print(10);
+
+//---------------------------------------
+
+    pool.enqueue([](int x) {
+        std::cout << x;
+        }, 5);
+
+    auto task = std::bind(lambda, 5);
+
+    task();     // lambda(5);
+#endif
 
 private:
     std::vector<std::thread> _v_threads;

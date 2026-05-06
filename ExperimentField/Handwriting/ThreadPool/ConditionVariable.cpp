@@ -25,6 +25,11 @@ void Consumer(){
     while(1){
         std::unique_lock<std::mutex> ul(_mtx);
         _cond.wait(ul, [](){ return !_q.empty(); });
+#if 0
+        while (_q.empty()) {
+           _cond.wait(ul);
+        }
+#endif
         auto value = _q.front();
         _q.pop();
         std::cout << "Consumer: " << value << "\n";
