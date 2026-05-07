@@ -16,6 +16,6 @@ int func(){
 
 int main(){
 	std::future<int> future_result = std::async(std::launch::async, func);		// this creates a child thread in the background to run, and returns the result to future_result
-	std::cout << func() << std::endl;
-	std::cout << future_result.get() << std::endl;		// Retrieves the result that is stored in the associated asynchronous state.
+	std::cout << "func(): " << func() << std::endl;
+	std::cout << "future_result.get(): " << future_result.get() << std::endl;		// Retrieves the result that is stored in the associated asynchronous state.
 }
