@@ -9,11 +9,14 @@ std::queue<int> _q;
 std::condition_variable _cond;
 std::mutex _mtx;
 
+// `unique_lock` does not stop the entire thread, 
+// but rather ensures that operations on the shared resource `_q` (the queue) are mutually exclusive.
+
 void Producer(){
     for(auto i = 1; i <= 10; i++){
         {
             std::unique_lock<std::mutex> ul(_mtx);
-            _q.push(i);
+            _q.emplace(i);
             _cond.notify_one();
             std::cout << "Producer: " << i << "\n";
         }
@@ -24,7 +27,7 @@ void Producer(){
 void Consumer(){
     while(1){
         std::unique_lock<std::mutex> ul(_mtx);
-        _cond.wait(ul, [](){ return !_q.empty(); });
+        _cond.wait(ul, [](){ return !_q.empty(); });    // wait until !_q.empty(). during the wait period, the lock is released
 #if 0
         while (_q.empty()) {
            _cond.wait(ul);
