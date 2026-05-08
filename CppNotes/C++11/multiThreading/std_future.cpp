@@ -1,5 +1,6 @@
-// a placeholder
-// tt represents a result that does not exist now but will appear in the future.
+// a template function, placeholder
+// to represents a result that does not exist now but will appear in the future.
+// this avoid the hassle of manually creating nd managing threads
 
 
 // future is move semantic（move-only), once you call '.get()'，then this future is invalid
