@@ -17,3 +17,12 @@ inline constexpr double pi = 3.141592653;
 struct MyClass{
 	static inline int instanceCount = 0;	// Can be defined in header
 };
+
+class Entity{
+	inline constexpr double rampLengthSamples = 128;	// error, Non-static members cannot be inline.
+	
+	// correct
+	static inline constexpr double rampLengthSamples = 128;
+	// inline is implicit since C++17
+	static constexpr double rampLengthSamples = 128;
+}
