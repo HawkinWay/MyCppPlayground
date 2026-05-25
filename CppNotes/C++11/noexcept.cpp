@@ -3,7 +3,7 @@
 // This means no exceptions can escape from their scope of function.
 
 // If a 'noexcept' function throw out an exception, there are two situations: 
-// 1.The exception was caught within the function scope， then it cannot be rethrown.  
+// 1. The exception was caught within the function scope， then it cannot be rethrown.  
 // 2. The exception was not caught within the function scope, Cpp program calls 'std::terminate()' and end the program.
 
 
