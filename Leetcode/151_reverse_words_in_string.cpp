@@ -9,7 +9,7 @@ public:
         int n = s.size();
         if(n == 1)  return s;
         int slow = 0, fast = 0;
-        while(fast < n){
+        while(fast < n){    // this cycle aims to retrim ' ' : " a good   example " =>  "a good example    "
             if(s[fast] != ' '){
                 if(slow != 0){
                     s[slow++] =' ';
@@ -20,14 +20,14 @@ public:
             }
             fast++;
         }
-        s.resize(slow);
+        s.resize(slow);     // notice the size of s has changed, we need renew the value of n
         
         reverse(s.begin(), s.end());
         n = s.size();
 
 
         int head = 0, tail = 0;
-        while(tail <= n){
+        while(tail <= n){   // only when <=, the tail can reach the value of s.size() 
             if(tail == s.size() || s[tail] == ' '){    
                 reverse(s.begin() + head, s.begin() + tail);
                 head = tail + 1;
