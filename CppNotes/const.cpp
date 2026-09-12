@@ -4,7 +4,8 @@
 // 不会修改对象的值的成员函数可以声明为const
 // const对象无法调用它的非const成员函数
 // West const: const int& val = vec.at(0); —— 你不能执行 val = 10
-// East const: at(size_t index) const{}	这说明该函数是一个常成员函数。它承诺不会修改容器本身的任何成员变量
+// East const: at(size_t index) const{}	这说明该函数是一个常成员函数。它相当于在函数内给this指针加const，
+//             意味着承诺不会修改容器本身的任何非mutable成员变量，同时也限制了该类的const对象只能调用这些const成员函数
 
 //  const int :它是原变量的一个只读副本,不能修改,开销有拷贝开销
 //  int& :它是原变量的一个可写别名,可以修改,你在函数里改了这个引用，外部的原变量会跟着变,开销极小

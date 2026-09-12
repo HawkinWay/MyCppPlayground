@@ -10,7 +10,45 @@
 
 ## inline
 
-go [CppNotes/inline.cpp](../../CppNotes/inline.cpp)
+[CppNotes/inline.cpp](../../CppNotes/inline.cpp)  
+[CppNotes/C++17/inlineVariables.cpp](../../CppNotes/C++17/inlineVariables.cpp)
+
+---
+
+## static
+
+[CppNotes/static/static.cpp](../../CppNotes/static/static.cpp)  
+[CppNotes/static/static_function.cpp](../../CppNotes/static/static_function.cpp)
+
+### 1. static variables
+
+1.1  static global variable
+
+> *Stored in static section (usually, uninitialized/0 in .bss, initialized non-zero in  .data. This depends on you compiler)*
+
+- Lifecycle is as same as normal global variable, which is the entire program; the difference lies in their **linkage**. This can **prevent naming conflicts**.
+
+2.2 static local variable
+
+- Thread safe since C++11 (magic static)
+- Initialized once, lifecycle is the whole program
+- Scope within the function
+
+
+### 2. class static members
+
+2.1 static member variable
+
+- Belong to the class instead of an object.
+- Does not occupy object size.
+- Must be defined outside the class before C++17;
+- Lifecycle is the whole program
+
+2.2 static member fucntion
+
+- Belong to the class instead of an object.
+- **Have no** `this` pointer. So it can't be const, volatile and virtual.
+- Can't call non-static member variable/function.
 
 ---
 
@@ -56,6 +94,14 @@ const int a = 10;
 int* b = const_cast<int*>(&a);     
 *b = 20;        //error, UB
 ```
+
+---
+
+## constexpr
+
+[CppNotes/C++11/constexpr.cpp](../../CppNotes/C++11/constexpr.cpp)
+
+constexpr function can be calculated in compile-time or runtime
 
 ---
 
