@@ -1,11 +1,11 @@
 # Standard Template library
 
-- Containers
-- Iterators
-- Algorithms
-- Adapters
-- Allocators
-- Functors
+- `Containers`: store data
+- `Iterators`: connect data and algorithm
+- `Algorithms`: operate data
+- `Adapters`: converse interface
+- `Allocators`: manage memory allocation and release
+- `Functors`: pass to the algorithm as a strategy
 
 ---
 
@@ -15,7 +15,7 @@
 
 |Name|Data Structure|Memory Layout|Important Interface|Iterator Invalidation|Remarks|
 |--|--|--|--|--|--|
-|vector|A dynamic array|Contiguous single block of memory|`emplace_back()`: since C++17, the sole advantage of this interface is *passing multiple constructor parameters and handle explicit constructor* (because of `Guaranteed Copy Elision`)|insert(), erase(), reserve()|vector bool is **not** a standard container, underlying storage is bit-packed (1-bit per boolean). `auto& ref = vb[0];` **fails to compile**, vb[0] is a temporary proxy, not `bool&`|
+|vector|A dynamic array|Contiguous single block of memory(**means high `cache hit rate`**)|`emplace_back()`: since C++17, the sole advantage of this interface is *passing multiple constructor parameters and handle explicit constructor* (because of `Guaranteed Copy Elision`)|insert(), erase(), reserve()|vector bool is **not** a standard container, underlying storage is bit-packed (1-bit per boolean). `auto& ref = vb[0];` **fails to compile**, vb[0] is a temporary proxy, not `bool&`|
 |deque|A double-end queue|central map (pointer array) + chunks (buffers)|push_back(), push_front()|--| Iterators hold a pointer into the map. When the map itself grows, the map’s address changes, thus all iterators are invalidated. =|
 |list|A double-linked list|--|push_back(), push_front(), pop_back(), pop_front()|erase()|--|
 |string|
@@ -31,14 +31,26 @@
 |map|Red-black tree|O(logN)
 |multimap||O(logN)
 
+*concept: [Red-black tree](../Concepts/Tree.md)*
+
 ### 1.3 Unordered Assosiative Containers
 
 |Name|Low Level Implement|Key Find|
 |--|--|--|
-|unordered_set|Hashmap|O(1)|
-|unordered_multiset|Hashmap|O(1)|
-|unordered_map|Hashmap|O(1)|
-|unordered_multimap|Hashmap|O(1)|
+|unordered_set|Hashmap|O(1), worst-case O(n)|
+|unordered_multiset|Hashmap|O(1), worst-case O(n)|
+|unordered_map|Hashmap|O(1), worst-case O(n)|
+|unordered_multimap|Hashmap|O(1), worst-case O(n)|
+
+*When all keys have conflict with a same bucker, the linked list length become n. This leads to a whole traversion of the linked list.*
+
+#### unordered_map
+
+`bucket`: each slot of the hash array
+
+`load_factor`: the number of elements / the number of buckets. the smaller load_factor is, the shorter linked list is, so the faster find does.
+
+`rehash`: when `load_factor()` > `max_load_factor()`(usually 1.0), reallocate bucket arrays, redistribute all elements into new buckets.
 
 ---
 
@@ -46,6 +58,21 @@
 ## 2. Iterators
 
 An itrator is an object that behaves like a pointer that traverse and access elements of a container.
+
+- `Input iterator`: read-only, `istream_iterator`
+- `output iterator`: read-only, `ostream_iterator`
+- `Forward iterator`: read and write, ++, `forward_list`
+- `Bidirectional iterator`: ++, --`list`, `set`, `map`
+- `Random access iterator`: +n, -n, [], `vector`, `deque`, `array`
+
+
+`sort()` need Random access iterator  
+`reverse()` need Bidirectional iterator  
+`find()` need istream
+`copy` need ostream  
+
+*container list can't use `std::sort()`, use member function `.sort()`insteadly*
+
 
 ---
 
@@ -56,6 +83,14 @@ Algorithms don't work with containers themselves but rather with iterators. Ther
 find(), count(), for_each()
 
 sort(), reverse(), replace(), swap()
+
+### sort() vs stable_sort()
+
+`sort`: Unstable sorting (IntroSort), the relative order of equal elements is not guaranteed.
+
+`stable_sort`: Stable sorting (merge sort approach), guarantees the relative order of equal elements, but requires additional memory.
+
+Use case: Sorting by multiple keys (first sort by name, then by department, maintaining name order).
 
 ### reserve() vs resize()
 
@@ -98,3 +133,31 @@ std::allocator encapsulates ::operator new and ::operator delete. ::operator new
     - Allocates memory in larger pools from the heap when a specific free list is empty, carving it up into individual blocks.
 
 ---
+
+## 6. Functors
+
+A struct/class overloads `operator()`.
+
+- std::greater<>
+- std::less<>
+- std::plus<>
+
+|Dimension|Functor|Lambda|std::function|std::bind|
+|--|--|--|--|--|
+|Essence|Hand-writing class|Compiler-generated anonymous functor class|Generic callable object wrapper|Binding parameters to generate callable objects|
+|Remarks||[], [=], [&], [x] [&x], [this]|
+---
+
+## Remarks
+
+### Vector expansion
+
+Before C++11, there're no move semantics. So when a vector expanse, it needs a new larger memory block and copy elements from old memory to new memory one by one(call copy constructor). Then destruct old elements and release old memory block. This made **deep copy** and have a huge overhead.
+
+After C++11, with noexcept move constructor, vector can handle expansion faster. Because this only need copy some opinters(start, finish, end_of_storage).
+
+### SSO(short string optimization)
+
+If a string's length is less than 16B, it's a small string. std::string reserved a small cache block in stack and storage that. 
+
+In the event of SSO, the move semantics of std::string degenerate into copying. Therefore, performing std::move on small strings does not result in a performance improvement.
