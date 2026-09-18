@@ -57,6 +57,7 @@ int main(){
     std::cout << "----------print(const T& t)\n"; 
 	print(1);
 
+	// recursive unfolding of the parameter pack
     std::cout << "----------print(const First& first, const Rest&... rest)\n";
 	print(10,20);   // cout flag 10, print(20) ; cout 20
 	print(100, 200, 300);   // cout flag 100, print({200, 300}) ; cout flag 200, print(300) ; cout 300
