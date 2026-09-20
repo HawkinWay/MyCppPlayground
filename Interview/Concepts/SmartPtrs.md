@@ -208,5 +208,39 @@ auto a = std::make_shared<Widget>();
 auto b = a;     // sharing the same one control block
 ```
 
+---
+
+## shared_ptr safe boundary
+
+> *"Reference counting thread safety" protects the control block, not the `shared_ptr` object itself.*
+
+### 1
+We know that reference count is thread-safe because it's atomic.
+
+So, when multithreads copy/destruct different `shared_ptr` instances(even if they point to a same object) at the same time, the reference count would not become chaotic.
+
+### 2
+
+To differenct `shared_ptr` instances, each operated by different thread is safe.
+
+```cpp
+auto sp = std::make_shared<int>(42);
+
+std::thread t1([sp](){ auto local = sp; });     // safe
+std::thread t2([sp](){ auto local = sp; });     // safe
+```
+
+In this case, every thread(t1, t2) has a sp copy, these copies are different instance but shared the same control block. So the two threads do not interfere each other. The reference count is atomic, so this is a safe case too.
+
+### 3
+
+```cpp
+std::shared_ptr<int> g_sp = std::make_shared<int>(42);
+
+std::thread t1([]() { g_sp = std::make_shared<int>(1); });  // write
+std::thread t2([]() { auto local = g_sp; });                 // read
+// t2 读 g_sp 的过程中，t1 可能正在改它的指针成员
+// local 可能拿到"对象指针是新的、控制块指针是旧的"这种撕裂状态 → UB
+```
 
 
