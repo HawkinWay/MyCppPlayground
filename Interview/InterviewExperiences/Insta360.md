@@ -333,9 +333,9 @@ lambda表达式是编译器生成的一个匿名仿函数类
 - this捕获
     - [this]
     - [*this]：C++17，把整个类对象拷贝一份到lambda
-- 初始化捕获
+- 初始化捕获 (C++14)
     - [x = expr] 
-    - [ptr = std::move(obj)]：C++14，将obj移动到lambda内部，原obj变空
+    - [ptr = std::move(obj)]：将obj移动到lambda内部，原obj变空
 
 ### 36.constexpr和const有何区别？
 
